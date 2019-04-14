@@ -16,7 +16,7 @@
         $.get("Agriculture.csv", function(csvString) {
             var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
             var data = google.visualization.arrayToDataTable(arrayData);
-            console.log("infunction " + data);
+            console.log("infunction " + data.getTableProperties);
             return data;
         });
       }
@@ -79,7 +79,7 @@
         
         dashboard.bind(yearSelector, mapChart);
 
-        console.log("outfunction " + dataAgriculture);
+        console.log("outfunction " + dataAgriculture.getTableProperties;
         dashboard.draw(dataAgriculture);
         document.getElementById('agriculture').addEventListener('click', function () {
             dashboard.draw(dataAgriculture);
