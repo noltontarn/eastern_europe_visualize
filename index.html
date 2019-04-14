@@ -12,14 +12,6 @@
       });
       google.charts.setOnLoadCallback(drawRegionsMap);
 
-      function loadData() {
-        $.get("Agriculture.csv", function(csvString) {
-            var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
-            var data = google.visualization.arrayToDataTable(arrayData);
-            console.log("infunction " + data.getTableProperties);
-            return data;
-        });
-      }
       function drawRegionsMap() {
         var dataAgriculture;
         /*var dataAgriculture = google.visualization.arrayToDataTable([
