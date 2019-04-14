@@ -13,7 +13,6 @@
       google.charts.setOnLoadCallback(drawRegionsMap);
 
       function drawRegionsMap() {
-        var dataAgriculture;
         /*var dataAgriculture = google.visualization.arrayToDataTable([
           ['Country', 'Value Added (%GDP)', 'Year'],
           ['Bulgaria', 200, 2003],
@@ -66,13 +65,13 @@
         });
         
         dashboard.bind(yearSelector, mapChart);
-
         //console.log("outfunction " + dataAgriculture.getTableProperties);
         $.get("Agriculture.csv", function(csvString) {
                 var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
                 var data = google.visualization.arrayToDataTable(arrayData);
                 console.log("infunction " + data);
                 dashboard.draw(data);
+                document.getElementById("current").innerHTML = "Agriculture";
         });
 
         document.getElementById('agriculture').addEventListener('click', function () {
@@ -81,6 +80,7 @@
                 var data = google.visualization.arrayToDataTable(arrayData);
                 console.log("infunction " + data);
                 dashboard.draw(data);
+                document.getElementById("current").innerHTML = "Agriculture";
             });
         }, false);
 
@@ -90,6 +90,7 @@
                 var data = google.visualization.arrayToDataTable(arrayData);
                 console.log("infunction " + data);
                 dashboard.draw(data);
+                document.getElementById("current").innerHTML = "Services";
             });
         }, false);
 
@@ -99,12 +100,14 @@
                 var data = google.visualization.arrayToDataTable(arrayData);
                 console.log("infunction " + data);
                 dashboard.draw(data);
+                document.getElementById("current").innerHTML = "Industry";
             });
         }, false);
       }
     </script>
   </head>
   <body>
+    <h1>Selected: <span id="current"></span></h1>
     <div id="dashboard_div">
         <div id="filter_div"></div>
         <div id="regions_div" style="width: 900px; height: 500px;"></div>
