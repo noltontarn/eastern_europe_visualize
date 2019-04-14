@@ -16,12 +16,17 @@
         $.get("Agriculture.csv", function(csvString) {
             var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
             var data = google.visualization.arrayToDataTable(arrayData);
+            console.log("infunction " + data);
+            return data;
         });
-        console.log("infunction " + data);
-        return data;
       }
       function drawRegionsMap() {
-          var dataAgriculture = loadData();
+        var dataAgriculture = $.get("Agriculture.csv", function(csvString) {
+            var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+            var data = google.visualization.arrayToDataTable(arrayData);
+            console.log("infunction " + data);
+            return data;
+        });
         /*var dataAgriculture = google.visualization.arrayToDataTable([
           ['Country', 'Value Added (%GDP)', 'Year'],
           ['Bulgaria', 200, 2003],
