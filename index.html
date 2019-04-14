@@ -12,9 +12,15 @@
       });
       google.charts.setOnLoadCallback(drawRegionsMap);
 
+      function loadData() {
+        $.get("Agriculture.csv", function(csvString) {
+            var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+            var data = google.visualization.arrayToDataTable(arrayData);
+            return data
+        });
+      }
       function drawRegionsMap() {
-        var arrayData = $.csv.toArray($.get("Agriculture.csv"));
-        var dataAgriculture = google.visualization.arrayToDataTable(arrayData);
+          var dataAgriculture;
         /*var dataAgriculture = google.visualization.arrayToDataTable([
           ['Country', 'Value Added (%GDP)', 'Year'],
           ['Bulgaria', 200, 2003],
@@ -67,6 +73,7 @@
         
         dashboard.bind(yearSelector, mapChart);
 
+        dataAgriculture = loadData();
         dashboard.draw(dataAgriculture);
         document.getElementById('agriculture').addEventListener('click', function () {
             dashboard.draw(dataAgriculture);
