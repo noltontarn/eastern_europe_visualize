@@ -13,9 +13,8 @@
       google.charts.setOnLoadCallback(drawRegionsMap);
 
       function drawRegionsMap() {
-        $.get("Agriculture.csv", function(csvString) {
-            var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
-            var dataAgriculture = google.visualization.arrayToDataTable(arrayData);
+        var arrayData = $.csv.toArray($.get("Agriculture.csv"));
+        var dataAgriculture = google.visualization.arrayToDataTable(arrayData);
         /*var dataAgriculture = google.visualization.arrayToDataTable([
           ['Country', 'Value Added (%GDP)', 'Year'],
           ['Bulgaria', 200, 2003],
@@ -24,7 +23,6 @@
           ['Romania', 200, 2013],
           ['Russia', 200, 2004],
         ]);*/
-        });
 
         var dataServices = google.visualization.arrayToDataTable([
           ['Country', 'Value Added (%GDP)', 'Year'],
