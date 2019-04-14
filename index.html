@@ -69,6 +69,7 @@
             containerId: 'regions_div',
             options: {
                 region: '150',
+                colorAxis: {colors: ['#e7711c', '#4374e0']}
             }
         });
         
@@ -81,7 +82,7 @@
                 console.log("infunction " + data);
                 dashboard.draw(data);
         });
-        
+
         document.getElementById('agriculture').addEventListener('click', function () {
             $.get("Agriculture.csv", function(csvString) {
                 var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
