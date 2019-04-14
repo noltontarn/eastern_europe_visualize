@@ -31,7 +31,7 @@
           ['Russia', 200, 2004],
         ]);*/
 
-        var dataServices = google.visualization.arrayToDataTable([
+        /*var dataServices = google.visualization.arrayToDataTable([
           ['Country', 'Value Added (%GDP)', 'Year'],
           ['Bulgaria', 300, 2003],
           ['Greece', 300, 2004],
@@ -48,7 +48,7 @@
           ['Romania', 400, 2013],
           ['Russia', 400, 2004],
         ]);
-
+            */
         var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
 
         var yearSelector = new google.visualization.ControlWrapper({
@@ -75,7 +75,13 @@
         dashboard.bind(yearSelector, mapChart);
 
         //console.log("outfunction " + dataAgriculture.getTableProperties);
-        dashboard.draw(dataServices);
+        $.get("Agriculture.csv", function(csvString) {
+                var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+                var data = google.visualization.arrayToDataTable(arrayData);
+                console.log("infunction " + data);
+                dashboard.draw(data);
+        });
+        
         document.getElementById('agriculture').addEventListener('click', function () {
             $.get("Agriculture.csv", function(csvString) {
                 var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
@@ -86,11 +92,21 @@
         }, false);
 
         document.getElementById('services').addEventListener('click', function () {
-            dashboard.draw(dataServices);
+            $.get("Services.csv", function(csvString) {
+                var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+                var data = google.visualization.arrayToDataTable(arrayData);
+                console.log("infunction " + data);
+                dashboard.draw(data);
+            });
         }, false);
 
         document.getElementById('industry').addEventListener('click', function () {
-            dashboard.draw(dataIndustry);
+            $.get("Industry.csv", function(csvString) {
+                var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+                var data = google.visualization.arrayToDataTable(arrayData);
+                console.log("infunction " + data);
+                dashboard.draw(data);
+            });
         }, false);
       }
     </script>
