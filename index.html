@@ -13,33 +13,7 @@
       google.charts.setOnLoadCallback(drawRegionsMap);
 
       function drawRegionsMap() {
-        /*var dataAgriculture = google.visualization.arrayToDataTable([
-          ['Country', 'Value Added (%GDP)', 'Year'],
-          ['Bulgaria', 200, 2003],
-          ['Greece', 200, 2004],
-          ['Poland', 200, 2003],
-          ['Romania', 200, 2013],
-          ['Russia', 200, 2004],
-        ]);*/
-
-        /*var dataServices = google.visualization.arrayToDataTable([
-          ['Country', 'Value Added (%GDP)', 'Year'],
-          ['Bulgaria', 300, 2003],
-          ['Greece', 300, 2004],
-          ['Poland', 300, 2003],
-          ['Romania', 300, 2013],
-          ['Russia', 300, 2004],
-        ]);
-
-        var dataIndustry = google.visualization.arrayToDataTable([
-          ['Country', 'Value Added (%GDP)', 'Year'],
-          ['Bulgaria', 400, 2003],
-          ['Greece', 400, 2004],
-          ['Poland', 400, 2003],
-          ['Romania', 400, 2013],
-          ['Russia', 400, 2004],
-        ]);
-            */
+        
         var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
 
         var yearSelector = new google.visualization.ControlWrapper({
@@ -65,7 +39,7 @@
         });
         
         dashboard.bind(yearSelector, mapChart);
-        //console.log("outfunction " + dataAgriculture.getTableProperties);
+
         $.get("Agriculture.csv", function(csvString) {
                 var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
                 var data = google.visualization.arrayToDataTable(arrayData);
@@ -107,6 +81,7 @@
     </script>
   </head>
   <body>
+    <h1>Value added to GDP (Percent)</h1>
     <h1>Selected: <span id="current"></span></h1>
     <div id="dashboard_div">
         <div id="filter_div"></div>
