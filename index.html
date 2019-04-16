@@ -1,8 +1,8 @@
 <html>
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="jquery-3.4.0.js"></script>
-    <script src="jquery-csv.js"></script>
+    <script src="./js/jquery-3.4.0.js"></script>
+    <script src="./js/jquery-csv.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {
         'packages':['geochart', 'controls'],
@@ -40,7 +40,7 @@
         
         dashboard.bind(yearSelector, mapChart);
 
-        $.get("Agriculture.csv", function(csvString) {
+        $.get("./data/Agriculture.csv", function(csvString) {
                 var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
                 var data = google.visualization.arrayToDataTable(arrayData);
                 console.log("infunction " + data);
@@ -49,7 +49,7 @@
         });
 
         document.getElementById('agriculture').addEventListener('click', function () {
-            $.get("Agriculture.csv", function(csvString) {
+            $.get("./data/Agriculture.csv", function(csvString) {
                 var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
                 var data = google.visualization.arrayToDataTable(arrayData);
                 console.log("infunction " + data);
@@ -59,7 +59,7 @@
         }, false);
 
         document.getElementById('services').addEventListener('click', function () {
-            $.get("Services.csv", function(csvString) {
+            $.get("./data/Services.csv", function(csvString) {
                 var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
                 var data = google.visualization.arrayToDataTable(arrayData);
                 console.log("infunction " + data);
@@ -69,7 +69,7 @@
         }, false);
 
         document.getElementById('industry').addEventListener('click', function () {
-            $.get("Industry.csv", function(csvString) {
+            $.get("./data/Industry.csv", function(csvString) {
                 var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
                 var data = google.visualization.arrayToDataTable(arrayData);
                 console.log("infunction " + data);
